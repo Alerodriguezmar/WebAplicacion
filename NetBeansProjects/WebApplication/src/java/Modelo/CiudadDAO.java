@@ -1,0 +1,71 @@
+package Modelo;
+
+import Config.DataBase;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+
+public class CiudadDAO {
+      DataBase db = new DataBase();
+      
+      public String insertar(Object object){
+          Ciudad ciudad = (Ciudad) object;
+          Connection con;
+          PreparedStatement pst;
+          String sql = "INSERT INTO ciudad VALUES(?,?,?,?,?)";
+          String respuesta="";
+          try {
+              Class.forName(db.getDriver());
+              con = DriverManager.getConnection(db.getUrl(), db.getUsuario(), db.getContrasena());
+              pst = con.prepareStatement(sql);
+              
+              pst.setInt(1, ciudad.getIdCiudad());
+              pst.setString(2, ciudad.getNombre_ciudad());
+              pst.setInt(3, ciudad.getCant_habitantes());
+              pst.setString(4, ciudad.getSitio_turistico());
+              pst.setString(5, ciudad.getHotel_reservado());
+              int fila = pst.executeUpdate();
+              respuesta = "se registraron" + fila + "nuevo elemento";
+              con.close();     
+          } catch (ClassNotFoundException | SQLException e) {
+              
+          }
+         return respuesta;
+      }
+      
+      public List<Ciudad> listarciudades() throws ClassNotFoundException{
+        List<Ciudad> lista = new ArrayList<>();
+        Connection con;
+        PreparedStatement pst;
+        ResultSet rs; 
+        String sql ="SELECT * FROM ciudad";
+       
+        try {
+           Class.forName(db.getDriver());
+           con = DriverManager.getConnection(db.getUrl(), db.getUsuario(), db.getContrasena());
+           pst = con.prepareStatement(sql);
+           rs = pst.executeQuery();
+            while (rs.next()) {           
+                int idCiudad = rs.getInt("idCiudad");
+                String nombre_ciudad= rs.getString("nombre_ciudad");
+                int cant_habitantes = rs.getInt("cant_habitantes");
+                String sitio_turistico = rs.getString("sitio_turistico");
+                String hotel_reservado = rs.getString("hotel_reservado");
+                
+                Ciudad ciudad = new Ciudad(idCiudad, nombre_ciudad, cant_habitantes, sitio_turistico, hotel_reservado);
+                lista.add(ciudad);
+            }
+            con.close();   
+        } catch (SQLException e) {
+            System.out.println(e.toString());
+            return null;
+        }
+         return lista;
+    }
+    
+}
