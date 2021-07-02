@@ -1,6 +1,8 @@
 
 import Modelo.Ciudad;
 import Modelo.CiudadDAO;
+import Modelo.Turista;
+import Modelo.TuristaDAO;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
@@ -18,21 +20,33 @@ import javax.servlet.RequestDispatcher;
 public class NewClass {
     
      public static void main(String[] args) throws ClassNotFoundException{
-         CiudadDAO dao = new CiudadDAO();
-            Ciudad ciudad = new Ciudad();
-            Ciudad ciudad2 = new Ciudad();
+       
+            
             
             List<Ciudad> list = new ArrayList<>();
             String respuesta="";
             RequestDispatcher rd = null;
-            
-                      CiudadDAO ciudaddao = new CiudadDAO();
-        List<Ciudad> datosciudad = new ArrayList();
-                datosciudad = ciudaddao.listarciudades();
-                System.out.println(datosciudad.size());
-                    for (Ciudad dato : datosciudad) {   
-                           System.out.println(String.valueOf(dato.getNombre_ciudad()));
-                            }                    
+            CiudadDAO daoc = new CiudadDAO();
+          TuristaDAO dao = new TuristaDAO();
+        List<Turista> datos = new ArrayList(); 
+        
+        
+         System.out.println(daoc.Buscarid(5).getHotel_reservado());
+         dao.listarTuristas();
+          datos = dao.listarTuristas();
+                    for (Turista dato : datos) {
+                          dato.getIdentificacion();
+                               dato.getNombret();
+                             dato.getFechan();
+                              dato.getTipoid();
+                              dato.getFrecuencia();
+                              dato.getPresupuesto();
+                            // System.out.println(dato.getCiudad());
+                              dato.isTarjeta();
+                        }
+                    
+                    
+        
     
     }
 }

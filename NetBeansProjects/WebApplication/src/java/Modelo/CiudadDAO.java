@@ -148,6 +148,38 @@ public class CiudadDAO {
         }
          return ciudad;
     }
+  
+    public Ciudad Buscarid(int id) {
+        Ciudad ciudad = new Ciudad();
+        Connection con;
+        PreparedStatement pst;
+        ResultSet rs; 
+       
+       
+        try {
+ 
+           con = DriverManager.getConnection(db.getUrl(), db.getUsuario(), db.getContrasena());
+           String sql ="SELECT* FROM ciudad WHERE idCiudad = ?";
+           pst = con.prepareStatement(sql);
+           pst.setInt(1, id);
+           rs = pst.executeQuery();
+            while (rs.next()) {           
+                int idCiudad = rs.getInt("idCiudad");
+                String nombre_ciudad= rs.getString("nombre_ciudad");
+                int cant_habitantes = rs.getInt("cant_habitantes");
+                String sitio_turistico = rs.getString("sitio_turistico");
+                String hotel_reservado = rs.getString("hotel_reservado");
+                
+              ciudad = new Ciudad(idCiudad, nombre_ciudad, cant_habitantes, sitio_turistico, hotel_reservado);
+                System.out.println("Consulta realizada");
+            }
+            con.close();   
+        } catch (SQLException e) {
+            System.out.println(e.toString());
+            return null;
+        }
+         return ciudad;
+    }
       
     
       
