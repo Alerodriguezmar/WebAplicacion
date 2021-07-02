@@ -19,7 +19,7 @@
         List<Ciudad> datosciudad = new ArrayList();
                     %>
     <body>
-        <h1>Turistas</h1>
+        <h1> Turistas </h1>
         <form name="Turista" method="post" action="SERVturista" >
             IDENTIFICACION<input type="text" name="textid"><br>
             NOMBRE:<input type="text" name="textnombre"><br>
@@ -30,8 +30,8 @@
                 <option value="Pasaporte">Pasaporte</option>
                 <option value="Registro">Registro Civil</option>
             </select><br>
-            FRECUENCIA VIAJE:<input type="text" name="textfrecuencia"><br>
-            PRESUPUESTO VIAJE:<input type="text" name="textpresupuesto"><br>
+            FRECUENCIA VIAJE:<input type="number" name="textfrecuencia"><br>
+            PRESUPUESTO VIAJE:<input type="number" name="textpresupuesto"><br>
             USA TARJETA:<input type="checkbox" name="texttarjeta"><br>
             CIUDAD:<select name="Ciudades">
                                <%
@@ -40,7 +40,7 @@
                     for (Ciudad dato : datosciudad) {
                           %>
                           
-                <option value="<% dato.getNombre_ciudad().toString(); %>"> <%= dato.getNombre_ciudad().toString() %> </option>
+                <option value="<%= dato.getNombre_ciudad().toString() %>"> <%= dato.getNombre_ciudad().toString() %> </option>
                 <% }%>
                   </select><br>
             
@@ -49,6 +49,7 @@
             <input type="submit" name="btnmodificar" value="Modificar">
             <input type="submit" name="btneliminar" value="Eliminar">      
         </form>
+                  <h1><center> Registros </center> </h1>
          <table border="1px">
             <tr>
                 <td>IDENTIFICACION</td> <td>NOMBRE</td> <td>FECHA NACIMIENTO</td> <td>TIPO ID</td> <td>FRECUENCIA VIAJES</td><td>PRESUPUESTO VIAJES</td><td>DESTINO</td><td>TARJETA CREDITO</td>
@@ -66,7 +67,7 @@
                               <td> <%= dato.getTipoid() %> </td>
                               <td> <%= dato.getFrecuencia() %> </td>
                               <td> <%= dato.getPresupuesto() %> </td>
-                               <td><%= dato.getCiudad().getNombre_ciudad() %></td>
+                              <td><%= ciudaddao.Buscarid(dato.getCiudad()).getNombre_ciudad() %></td>
                             <td> <%= dato.isTarjeta() %> </td>
                           </tr> 
                         <%

@@ -5,8 +5,16 @@
  */
 package Controlador;
 
+import Modelo.Ciudad;
+import Modelo.CiudadDAO;
+import Modelo.Turista;
+import Modelo.TuristaDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -31,16 +39,33 @@ public class SERVturista extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet SERVturista</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet SERVturista at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+             CiudadDAO dao = new CiudadDAO();
+            Ciudad ciudad = new Ciudad();
+            Turista turista = new Turista();
+            TuristaDAO daot = new TuristaDAO();
+            boolean tarjeta = false;
+            String repuesta="";
+            RequestDispatcher rd= null;
+            try {
+                if(request.getParameter("btninsertar") != null){
+                    turista.setNombret(request.getParameter("textnombre"));
+                    turista.setFechan(LocalDate.parse(request.getParameter("textfecha")));
+                    turista.setIdentificacion(request.getParameter("textid"));
+                    turista.setTipoid(request.getParameter("tipoid"));
+                    turista.setFrecuencia(Integer.valueOf(request.getParameter("textfrecuencia")));
+                    turista.setPresupuesto(Double.valueOf(request.getParameter("textpresupuesto")));
+                    
+                    if(request.getParameter("texttarjeta")!= null)
+                        tarjeta = true;
+                    turista.setTarjeta(tarjeta); 
+                    turista.setCiudad(dao.Buscar(request.getParameter("Ciudades")).getIdCiudad());
+                    repuesta = daot.insertar(turista);
+                    request.setAttribute("respuesta", repuesta);
+                     rd = request.getRequestDispatcher("VistaTurista.jsp");
+                }
+            } catch (Exception e) {
+            }
+            rd.forward(request, response);
         }
     }
 

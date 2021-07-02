@@ -11,12 +11,12 @@ public class Turista {
     private int frecuencia;
     private Double presupuesto;
     private boolean tarjeta;
-    private Ciudad ciudad;
+    private int ciudad;
 
     public Turista() {
     }
 
-    public Turista(String nombret, LocalDate fechan, String identificacion, String tipoid, int frecuencia, Double presupuesto, boolean tarjeta, Ciudad ciudad) {
+    public Turista(String nombret, LocalDate fechan, String identificacion, String tipoid, int frecuencia, Double presupuesto, boolean tarjeta, int ciudad) {
         this.nombret = nombret;
         this.fechan = fechan;
         this.identificacion = identificacion;
@@ -83,14 +83,15 @@ public class Turista {
         this.tarjeta = tarjeta;
     }
 
-    public Ciudad getCiudad() {
+    public int getCiudad() {
         return ciudad;
     }
 
-    public void setCiudad(Ciudad ciudad) {
+    public void setCiudad(int ciudad) {
         this.ciudad = ciudad;
     }
-    
+
+  
     
     
     

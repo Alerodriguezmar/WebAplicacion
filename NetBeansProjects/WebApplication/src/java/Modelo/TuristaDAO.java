@@ -39,18 +39,19 @@ public class TuristaDAO {
               pst.setString(1, turista.getNombret());
               pst.setDate(2, Date.valueOf(turista.getFechan()));
               pst.setString(3, turista.getIdentificacion());
-              pst.setString(4, turista.getTipoid());
+               pst.setString(4, turista.getTipoid());
               pst.setInt(5, turista.getFrecuencia());
-              pst.setDouble(6, turista.getPresupuesto());
-              pst.setBoolean(7, turista.isTarjeta());
-              pst.setObject(8, turista.getCiudad());
+               pst.setDouble(6, turista.getPresupuesto());
+                 pst.setBoolean(7, turista.isTarjeta());
+                pst.setInt(8, turista.getCiudad());
               int fila = pst.executeUpdate();
+              System.out.println("consulta");
               respuesta = "se registraron" + fila + "nuevo elemento";
               con.close();     
           } catch (ClassNotFoundException | SQLException e) {
               
           }
-         return respuesta;
+         return respuesta + "consulta";
       }
            
            
@@ -78,10 +79,10 @@ public class TuristaDAO {
                 Double presupuesto = rs.getDouble("presupuesto");
                 boolean tarjeta = rs.getBoolean("tarjeta");
                 int destino = rs.getInt("destino");
-                ciudad = daoc.Buscarid(destino);
+                
                
              
-             Turista turista = new Turista(nombret, fecha, identificacion, tipoid, frecuencia, presupuesto, tarjeta, ciudad);
+             Turista turista = new Turista(nombret, fecha, identificacion, tipoid, frecuencia, presupuesto, tarjeta, destino);
                     lista.add(turista);
                
             }
