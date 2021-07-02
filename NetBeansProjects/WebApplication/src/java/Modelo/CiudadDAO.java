@@ -56,7 +56,7 @@ public class CiudadDAO {
           } catch (ClassNotFoundException | SQLException e) {
               
           }
-         return respuesta + "consulta";
+         return respuesta ;
       }
       
       

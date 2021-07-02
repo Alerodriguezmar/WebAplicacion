@@ -54,17 +54,39 @@ public class SERVturista extends HttpServlet {
                     turista.setTipoid(request.getParameter("tipoid"));
                     turista.setFrecuencia(Integer.valueOf(request.getParameter("textfrecuencia")));
                     turista.setPresupuesto(Double.valueOf(request.getParameter("textpresupuesto")));
-                    
                     if(request.getParameter("texttarjeta")!= null)
                         tarjeta = true;
                     turista.setTarjeta(tarjeta); 
                     turista.setCiudad(dao.Buscar(request.getParameter("Ciudades")).getIdCiudad());
                     repuesta = daot.insertar(turista);
                     request.setAttribute("respuesta", repuesta);
-                     rd = request.getRequestDispatcher("VistaTurista.jsp");
-                }
-            } catch (Exception e) {
-            }
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//==============================================================================================================================                    
+                }else if(request.getParameter("btnmodificar") != null){
+                    turista.setNombret(request.getParameter("textnombre"));
+                    turista.setFechan(LocalDate.parse(request.getParameter("textfecha")));
+                    turista.setIdentificacion(request.getParameter("textid"));
+                    turista.setTipoid(request.getParameter("tipoid"));
+                    turista.setFrecuencia(Integer.valueOf(request.getParameter("textfrecuencia")));
+                    turista.setPresupuesto(Double.valueOf(request.getParameter("textpresupuesto")));
+                    if(request.getParameter("texttarjeta")!= null)
+                        tarjeta = true;
+                    turista.setTarjeta(tarjeta); 
+                    turista.setCiudad(dao.Buscar(request.getParameter("Ciudades")).getIdCiudad());
+                    repuesta = daot.Actualizar(turista);
+                    request.setAttribute("respuesta", repuesta);
+                    
+                    
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//==============================================================================================================================                    
+                }else if(request.getParameter("btneliminar") != null){
+                   turista.setIdentificacion(request.getParameter("textid"));
+                    repuesta = daot.Eliminar(turista);
+                    request.setAttribute("respuesta", repuesta);
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//=============================================================================================================================                  
+                }rd = request.getRequestDispatcher("VistaTurista.jsp");
+                             } catch (Exception e) {}
             rd.forward(request, response);
         }
     }

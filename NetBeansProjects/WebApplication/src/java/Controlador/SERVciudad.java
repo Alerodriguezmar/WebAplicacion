@@ -51,6 +51,9 @@ public class SERVciudad extends HttpServlet {
                     ciudad.setHotel_reservado(request.getParameter("texthotel"));
                     repuesta = dao.insertar(ciudad);
                     request.setAttribute("respuesta", repuesta);  
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//==============================================================================================================================
+               
                 }else if(request.getParameter("btnmodificar") != null){
                     ciudad.setIdCiudad(Integer.parseInt(request.getParameter("textid")));
                     ciudad.setNombre_ciudad(request.getParameter("textnombre"));
@@ -59,11 +62,16 @@ public class SERVciudad extends HttpServlet {
                     ciudad.setHotel_reservado(request.getParameter("texthotel"));
                     repuesta = dao.Actulizar(ciudad);
                     request.setAttribute("respuesta", repuesta);
-                    
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//==============================================================================================================================
+                                   
                 }else if(request.getParameter("btneliminar") != null){
                     ciudad.setIdCiudad(Integer.parseInt(request.getParameter("textid")));
                     repuesta = dao.Eliminar(ciudad);
                     request.setAttribute("respuesta", repuesta);
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//==============================================================================================================================
+                                 
                 }
                 rd = request.getRequestDispatcher("VistaCiudad.jsp");
             } catch (Exception e) {
