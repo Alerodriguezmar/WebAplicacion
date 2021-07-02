@@ -17,24 +17,22 @@ import javax.servlet.RequestDispatcher;
  */
 public class NewClass {
     
-     public static void main(String[] args) {
+     public static void main(String[] args) throws ClassNotFoundException{
          CiudadDAO dao = new CiudadDAO();
             Ciudad ciudad = new Ciudad();
+            Ciudad ciudad2 = new Ciudad();
             
             List<Ciudad> list = new ArrayList<>();
             String respuesta="";
             RequestDispatcher rd = null;
             
-          
-                
-                    
-                    ciudad.setIdCiudad(8);
-                    ciudad.setNombre_ciudad("Felipe");
-                    ciudad.setCant_habitantes(15696);
-                    ciudad.setSitio_turistico("asdasd");
-                    ciudad.setHotel_reservado("asdasdasd");
-                    respuesta = dao.insertar(ciudad);
-                    System.out.println(respuesta);
+                      CiudadDAO ciudaddao = new CiudadDAO();
+        List<Ciudad> datosciudad = new ArrayList();
+                datosciudad = ciudaddao.listarciudades();
+                System.out.println(datosciudad.size());
+                    for (Ciudad dato : datosciudad) {   
+                           System.out.println(String.valueOf(dato.getNombre_ciudad()));
+                            }                    
     
     }
 }

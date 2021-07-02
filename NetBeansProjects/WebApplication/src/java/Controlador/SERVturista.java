@@ -5,13 +5,8 @@
  */
 package Controlador;
 
-import Modelo.Ciudad;
-import Modelo.CiudadDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.List;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -21,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author PC
  */
-public class SERVciudad extends HttpServlet {
+public class SERVturista extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,45 +31,16 @@ public class SERVciudad extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            
-            CiudadDAO dao = new CiudadDAO();
-            Ciudad ciudad = new Ciudad();
-            List<Ciudad> lista = new ArrayList<>();
-            String repuesta="";
-            RequestDispatcher rd= null;
-            try {
-                if(request.getParameter("btninsertar") != null){
-                    ciudad.setIdCiudad(Integer.parseInt(request.getParameter("textid")));
-                    ciudad.setNombre_ciudad(request.getParameter("textnombre"));
-                    ciudad.setCant_habitantes(Integer.parseInt(request.getParameter("texthabitantes")));
-                    ciudad.setSitio_turistico(request.getParameter("textturista"));
-                    ciudad.setHotel_reservado(request.getParameter("texthotel"));
-                    repuesta = dao.insertar(ciudad);
-                    request.setAttribute("respuesta", repuesta);  
-                }else if(request.getParameter("btnmodificar") != null){
-                    ciudad.setIdCiudad(Integer.parseInt(request.getParameter("textid")));
-                    ciudad.setNombre_ciudad(request.getParameter("textnombre"));
-                    ciudad.setCant_habitantes(Integer.parseInt(request.getParameter("texthabitantes")));
-                    ciudad.setSitio_turistico(request.getParameter("textturista"));
-                    ciudad.setHotel_reservado(request.getParameter("texthotel"));
-                    repuesta = dao.Actulizar(ciudad);
-                    request.setAttribute("respuesta", repuesta);
-                    
-                }else if(request.getParameter("btneliminar") != null){
-                    ciudad.setIdCiudad(Integer.parseInt(request.getParameter("textid")));
-                    repuesta = dao.Eliminar(ciudad);
-                    request.setAttribute("respuesta", repuesta);
-                }
-                rd = request.getRequestDispatcher("VistaCiudad.jsp");
-            } catch (Exception e) {
-            }
-            
-            rd.forward(request, response);
-            
-            
-            
-            
-         
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet SERVturista</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet SERVturista at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
         }
     }
 

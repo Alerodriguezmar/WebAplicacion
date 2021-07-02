@@ -8,7 +8,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Ciudades</title>
+        <title>Ciudades</title>  
     </head>
      <%
         CiudadDAO ciudaddao = new CiudadDAO();
@@ -37,7 +37,7 @@
                           %>
                           <tr>
                               <td> <%= dato.getIdCiudad()%>       </td>
-                              <td> <%= dato.getNombre_ciudad()      %>     </td>
+                              <td> <%= dato.getNombre_ciudad()%>    </td>
                               <td> <%= dato.getCant_habitantes() %> </td>
                               <td> <%= dato.getSitio_turistico() %> </td>
                               <td> <%= dato.getHotel_reservado() %> </td>
@@ -48,4 +48,5 @@
         </table>        
         
     </body>
+    <a href="http://localhost:8080/WebApplication"><input type="button" value="INICIO"></a>
 </html>

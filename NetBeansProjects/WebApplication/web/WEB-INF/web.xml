@@ -4,9 +4,17 @@
         <servlet-name>SERVciudad</servlet-name>
         <servlet-class>Controlador.SERVciudad</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SERVturista</servlet-name>
+        <servlet-class>Controlador.SERVturista</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>SERVciudad</servlet-name>
         <url-pattern>/SERVciudad</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SERVturista</servlet-name>
+        <url-pattern>/SERVturista</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
