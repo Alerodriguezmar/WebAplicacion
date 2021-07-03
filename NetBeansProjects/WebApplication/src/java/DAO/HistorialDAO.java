@@ -24,7 +24,7 @@ DataBase db = new DataBase();
           Historial historial =  (Historial) object;
           Connection con;
           PreparedStatement pst;
-          String sql = "INSERT INTO  historial( nombre_ciudad , nombre_turista , id_turista , fecha_ingreso ) VALUES(?, ?, ?, ?);";
+          String sql = "INSERT INTO  historial ( nombre_ciudad , nombre_turista , id_turista , fecha_ingreso ) VALUES(?, ?, ?, ?)";
           String respuesta="";
           try {
               Class.forName(db.getDriver());
@@ -100,7 +100,64 @@ DataBase db = new DataBase();
     }
       
       
-  
-  
+          public List<Historial> BuscarCiudad(String nombre) throws ClassNotFoundException {
+        List<Historial> lista = new ArrayList<>();
+        Connection con;
+        PreparedStatement pst;
+        ResultSet rs;
+        String sql = "SELECT * FROM historial WHERE nombre_ciudad ='" +nombre + "'";
+        try {
+            Class.forName(db.getDriver());
+            con = DriverManager.getConnection(db.getUrl(), db.getUsuario(), db.getContrasena());
+            pst = con.prepareStatement(sql);
+            rs = pst.executeQuery();
+            while (rs.next()) {
+                
+                String nombret = rs.getString("nombre_turista");  
+                String nombrec = rs.getString("nombre_ciudad");
+                String id_turista = rs.getString("id_turista");
+                LocalDate fecha = rs.getDate("fecha_ingreso").toLocalDate();
+                
+                Historial historial = new Historial(nombrec, nombret, id_turista, fecha) ;
+                lista.add(historial);
+            }
+            con.close();
+        } catch (SQLException e) {
+            System.out.println(e.toString());
+            return null;
+        }
+        return lista;
+    }
+            
+          
+          
+          public List<Historial> BuscarTurista(String id) throws ClassNotFoundException {
+        List<Historial> lista = new ArrayList<>();
+        Connection con;
+        PreparedStatement pst;
+        ResultSet rs;
+        String sql = "SELECT * FROM historial WHERE id_turista ='" +id + "'";
+        try {
+            Class.forName(db.getDriver());
+            con = DriverManager.getConnection(db.getUrl(), db.getUsuario(), db.getContrasena());
+            pst = con.prepareStatement(sql);
+            rs = pst.executeQuery();
+            while (rs.next()) {
+                
+                String nombret = rs.getString("nombre_turista");  
+                String nombrec = rs.getString("nombre_ciudad");
+                String id_turista = rs.getString("id_turista");
+                LocalDate fecha = rs.getDate("fecha_ingreso").toLocalDate();
+                
+                Historial historial = new Historial(nombrec, nombret, id_turista, fecha) ;
+                lista.add(historial);
+            }
+            con.close();
+        } catch (SQLException e) {
+            System.out.println(e.toString());
+            return null;
+        }
+        return lista;
+    }
  
 }

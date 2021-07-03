@@ -73,7 +73,7 @@ TuristaDAO daot = new TuristaDAO();
          Historial historia2 = new Historial();
          
                    List<Historial> datos3 = new ArrayList();
-                datos3 = dao.listarHistorial();
+                datos3 = dao.BuscarTurista("1");
 
                 for (Historial dato : datos3) {
            
@@ -83,6 +83,8 @@ TuristaDAO daot = new TuristaDAO();
                  dato.getFecha_ingreso(); 
                           
             }
+                
+                
                 
  }
 

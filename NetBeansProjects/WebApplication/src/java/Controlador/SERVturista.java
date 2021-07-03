@@ -50,6 +50,10 @@ public class SERVturista extends HttpServlet {
             boolean tarjeta = false;
             String repuesta="";
             RequestDispatcher rd= null;
+            String Buscar;
+            List<Historial> datosbusqueda = new ArrayList<>();
+            
+            
             try {
                 if(request.getParameter("btninsertar") != null){
                     turista.setNombret(request.getParameter("textnombre"));
@@ -98,7 +102,33 @@ public class SERVturista extends HttpServlet {
                     request.setAttribute("respuesta", repuesta);
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //=============================================================================================================================                  
-                }rd = request.getRequestDispatcher("VistaTurista.jsp");
+                }else if(request.getParameter("btnbuscartu") != null){
+                   Buscar = request.getParameter("buscaturista");
+                   datosbusqueda = daoh.BuscarTurista(Buscar);
+                   request.setAttribute("busqueda",datosbusqueda);    
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//=============================================================================================================================                  
+                }else if(request.getParameter("btnbuscarci") != null){
+                   Buscar = request.getParameter("buscarciudad");
+                   datosbusqueda = daoh.BuscarCiudad(Buscar);
+                   request.setAttribute("busqueda",datosbusqueda);    
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//=============================================================================================================================                  
+                 }else if(request.getParameter("btnborrar") != null){
+                   datosbusqueda = daoh.listarHistorial();
+                   request.setAttribute("borrar",datosbusqueda);    
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//=============================================================================================================================                  
+                }
+                
+                
+                
+                
+                
+                
+                
+                
+                rd = request.getRequestDispatcher("VistaTurista.jsp");
                              } catch (Exception e) {}
             rd.forward(request, response);
         }

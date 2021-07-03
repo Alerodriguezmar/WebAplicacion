@@ -98,10 +98,10 @@
         <h1><center> Historial de Viajes </center> </h1>
         <form name="Turista" method="post" action="SERVturista" >
             Buscar Turista: <input type="text" name="buscaturista">
-            <input type="submit" name="btnbuscart" value="Buscar"><br> <br>
-            Buscar Ciudad: <input type="text" name="buscaturista">
-             <input type="submit" name="btnbuscarc" value="Buscar"><br> <br>
-            
+            <input type="submit" name="btnbuscartu" value="Buscar"><br> <br>
+            Buscar Ciudad: <input type="text" name="buscarciudad">
+             <input type="submit" name="btnbuscarci" value="Buscar"><br> <br>
+             <input type="submit" name="btnborrar" value="Borrar Busqueda"><br> <br>
         </form>
         <table border="1px">
             <tr>
@@ -109,8 +109,15 @@
             </tr>
             <%
                 List<Historial> datos3 = new ArrayList();
-                datos3 = daoh.listarHistorial();
-
+                if(request.getAttribute("busqueda") != null){
+                     datos3 = (List<Historial>) request.getAttribute("busqueda");
+                } else if(request.getAttribute("borrar") != null){
+                    datos3 = daoh.listarHistorial();
+                }else{
+                     datos3 = daoh.listarHistorial();
+                }
+                    
+                      
                 for (Historial dato : datos3) {
             %>     
             <tr>

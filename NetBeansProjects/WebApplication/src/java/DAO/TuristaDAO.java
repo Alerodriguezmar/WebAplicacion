@@ -32,7 +32,7 @@ public class TuristaDAO {
         Connection con;
         PreparedStatement pst;
 
-        String sql = "INSERT INTO turista VALUES(?,?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO  turista ( nombret , fechan , identificacion , tipoid,frecuencia,presupuesto,tarjeta,destino )VALUES(?,?,?,?,?,?,?,?)";
         String respuesta = "";
         try {
             Class.forName(db.getDriver());
