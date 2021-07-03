@@ -96,6 +96,13 @@
         </table>
         <hr>
         <h1><center> Historial de Viajes </center> </h1>
+        <form name="Turista" method="post" action="SERVturista" >
+            Buscar Turista: <input type="text" name="buscaturista">
+            <input type="submit" name="btnbuscart" value="Buscar"><br> <br>
+            Buscar Ciudad: <input type="text" name="buscaturista">
+             <input type="submit" name="btnbuscarc" value="Buscar"><br> <br>
+            
+        </form>
         <table border="1px">
             <tr>
                 <td>Ciudad</td><td>Turista</td><td>Identificion turista</td><td>Fecha de registro</td>
