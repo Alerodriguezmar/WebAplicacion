@@ -3,9 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Modelo;
+package DAO;
 
 import Config.DataBase;
+import Modelo.Ciudad;
+import DAO.CiudadDAO;
+import Modelo.Turista;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;

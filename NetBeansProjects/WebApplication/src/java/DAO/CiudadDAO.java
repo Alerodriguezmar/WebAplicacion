@@ -1,6 +1,7 @@
-package Modelo;
+package DAO;
 
 import Config.DataBase;
+import Modelo.Ciudad;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;

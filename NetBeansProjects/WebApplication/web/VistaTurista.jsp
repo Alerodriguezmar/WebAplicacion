@@ -1,10 +1,12 @@
 
+<%@page import="Modelo.Historial"%>
+<%@page import="DAO.HistorialDAO"%>
+<%@page import="DAO.CiudadDAO"%>
+<%@page import="DAO.TuristaDAO"%>
 <%@page import="Modelo.Ciudad"%>
-<%@page import="Modelo.CiudadDAO"%>
 <%@page import="Modelo.Turista"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="Modelo.TuristaDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -75,7 +77,29 @@
                     %>
              
         </table>        
-                  
+         <h1><center> Historico </center> </h1> 
+         
+         <table border="1px">
+             <tr>
+                 <td> Ciudad </td><td>Cantidad Visitantes</td>
+             </tr> 
+             <%
+                 //generar recorrido sobre la consulta y motrar datos
+                 HistorialDAO daoh = new HistorialDAO();
+                 List<Historial> datos2 = new ArrayList();
+                 datos2 = daoh.listarCantidad();
+
+                 for (Historial dato : datos2) {
+             %>     
+             <tr>
+                              <td> <%= dato.getNombre_ciudad() %>       </td>
+                              <td> <%= dato.getCant() %>    </td>
+             </tr>                
+                        <%
+                        }
+                    %>
+             
+         </table>
     </body>
     <a href="http://localhost:8080/WebApplication"><input type="button" value="INICIO"></a>
 </html>

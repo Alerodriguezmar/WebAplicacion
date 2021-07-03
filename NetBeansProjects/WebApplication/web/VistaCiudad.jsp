@@ -1,7 +1,7 @@
+<%@page import="DAO.CiudadDAO"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="Modelo.Ciudad"%>
-<%@page import="Modelo.CiudadDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>

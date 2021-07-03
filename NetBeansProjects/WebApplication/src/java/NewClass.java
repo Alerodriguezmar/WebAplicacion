@@ -1,8 +1,10 @@
 
 import Modelo.Ciudad;
-import Modelo.CiudadDAO;
+import DAO.CiudadDAO;
+import DAO.HistorialDAO;
 import Modelo.Turista;
-import Modelo.TuristaDAO;
+import DAO.TuristaDAO;
+import Modelo.Historial;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +23,7 @@ import javax.servlet.RequestDispatcher;
 public class NewClass {
     
      public static void main(String[] args) throws ClassNotFoundException{
-
+/*
          List<Ciudad> list = new ArrayList<>();
             String respuesta="";
             RequestDispatcher rd = null;
@@ -58,23 +60,31 @@ TuristaDAO daot = new TuristaDAO();
                     turista.setTarjeta(true);
   
                     daot.insertar(turista);
-                   
-
-
-
-
-
-
-
-
-
-
-
-
-
+*/
+        HistorialDAO dao = new HistorialDAO();
+        List<Historial> datos2 = new ArrayList();
+         datos2 = dao.listarCantidad();
+         /*
+         for (Historial dato : datos2) {
+             System.out.println(dato.getNombre_ciudad());
+             System.out.println(dato.getCant());
+             
+         }*/
+         Historial historia2 = new Historial();
+         
+         historia2.setNombre_turista("asdasssd");
+         historia2.setNombre_ciudad("asdassds");
+         historia2.setId_turista("asdasd");
+         historia2.setFecha_ingreso(LocalDate.now());
+         System.out.println(dao.insertar(historia2));
+         
+         
+         
+         }
+                
 
 
     
     }
-}
+
 

@@ -6,9 +6,11 @@
 package Controlador;
 
 import Modelo.Ciudad;
-import Modelo.CiudadDAO;
+import DAO.CiudadDAO;
+import DAO.HistorialDAO;
 import Modelo.Turista;
-import Modelo.TuristaDAO;
+import DAO.TuristaDAO;
+import Modelo.Historial;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.time.LocalDate;
@@ -40,6 +42,8 @@ public class SERVturista extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
              CiudadDAO dao = new CiudadDAO();
+             Historial historia = new Historial();
+             HistorialDAO daoh = new HistorialDAO();
             Ciudad ciudad = new Ciudad();
             Turista turista = new Turista();
             TuristaDAO daot = new TuristaDAO();
@@ -59,6 +63,15 @@ public class SERVturista extends HttpServlet {
                     turista.setTarjeta(tarjeta); 
                     turista.setCiudad(dao.Buscar(request.getParameter("Ciudades")).getIdCiudad());
                     repuesta = daot.insertar(turista);
+                
+ ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//==============================================================================================================================
+                 
+                     historia.setId_turista(request.getParameter("textid"));
+                     historia.setNombre_turista(request.getParameter("textnombre"));
+                     historia.setNombre_ciudad(request.getParameter("Ciudades"));
+                     historia.setFecha_ingreso(LocalDate.now());
+                     repuesta =  daoh.insertar(historia);         
                     request.setAttribute("respuesta", repuesta);
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //==============================================================================================================================                    

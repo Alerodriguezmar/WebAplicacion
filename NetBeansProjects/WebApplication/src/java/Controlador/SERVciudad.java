@@ -6,7 +6,8 @@
 package Controlador;
 
 import Modelo.Ciudad;
-import Modelo.CiudadDAO;
+import DAO.CiudadDAO;
+import Modelo.Historial;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
