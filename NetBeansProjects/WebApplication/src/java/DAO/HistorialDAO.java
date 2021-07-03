@@ -70,6 +70,35 @@ DataBase db = new DataBase();
         return lista;
     }
       
+        public List<Historial> listarHistorial() throws ClassNotFoundException {
+        List<Historial> lista = new ArrayList<>();
+        Connection con;
+        PreparedStatement pst;
+        ResultSet rs;
+        String sql = "SELECT * FROM historial";
+        try {
+            Class.forName(db.getDriver());
+            con = DriverManager.getConnection(db.getUrl(), db.getUsuario(), db.getContrasena());
+            pst = con.prepareStatement(sql);
+            rs = pst.executeQuery();
+            while (rs.next()) {
+                
+                String nombret = rs.getString("nombre_turista");  
+                String nombrec = rs.getString("nombre_ciudad");
+                String id_turista = rs.getString("id_turista");
+                LocalDate fecha = rs.getDate("fecha_ingreso").toLocalDate();
+                
+                Historial historial = new Historial(nombrec, nombret, id_turista, fecha) ;
+                lista.add(historial);
+            }
+            con.close();
+        } catch (SQLException e) {
+            System.out.println(e.toString());
+            return null;
+        }
+        return lista;
+    }
+      
       
   
   

@@ -72,19 +72,20 @@ TuristaDAO daot = new TuristaDAO();
          }*/
          Historial historia2 = new Historial();
          
-         historia2.setNombre_turista("asdasssd");
-         historia2.setNombre_ciudad("asdassds");
-         historia2.setId_turista("asdasd");
-         historia2.setFecha_ingreso(LocalDate.now());
-         System.out.println(dao.insertar(historia2));
-         
-         
-         
-         }
+                   List<Historial> datos3 = new ArrayList();
+                datos3 = dao.listarHistorial();
+
+                for (Historial dato : datos3) {
+           
+                    System.out.println(dato.getNombre_ciudad());
+                    System.out.println(dato.getNombre_turista());; 
+                 dato.getId_turista();
+                 dato.getFecha_ingreso(); 
+                          
+            }
                 
+ }
 
-
-    
-    }
+}
 
 
