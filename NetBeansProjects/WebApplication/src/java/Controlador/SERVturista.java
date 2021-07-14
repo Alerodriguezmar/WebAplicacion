@@ -56,27 +56,39 @@ public class SERVturista extends HttpServlet {
             
             try {
                 if(request.getParameter("btninsertar") != null){
-                    turista.setNombret(request.getParameter("textnombre"));
-                    turista.setFechan(LocalDate.parse(request.getParameter("textfecha")));
-                    turista.setIdentificacion(request.getParameter("textid"));
-                    turista.setTipoid(request.getParameter("tipoid"));
-                    turista.setFrecuencia(Integer.valueOf(request.getParameter("textfrecuencia")));
-                    turista.setPresupuesto(Double.valueOf(request.getParameter("textpresupuesto")));
-                    if(request.getParameter("texttarjeta")!= null)
-                        tarjeta = true;
-                    turista.setTarjeta(tarjeta); 
-                    turista.setCiudad(dao.Buscar(request.getParameter("Ciudades")).getIdCiudad());
-                    repuesta = daot.insertar(turista);
-                
- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//==============================================================================================================================
-                 
-                     historia.setId_turista(request.getParameter("textid"));
-                     historia.setNombre_turista(request.getParameter("textnombre"));
-                     historia.setNombre_ciudad(request.getParameter("Ciudades"));
-                     historia.setFecha_ingreso(LocalDate.now());
-                     repuesta =  daoh.insertar(historia);         
-                    request.setAttribute("respuesta", repuesta);
+                    if(daot.CantidadVisitas(request.getParameter("fechaviaje"),dao.Buscar(request.getParameter("Ciudades")).getIdCiudad())<6){
+                            turista.setNombret(request.getParameter("textnombre"));
+                            turista.setFechan(LocalDate.parse(request.getParameter("textfecha")));
+                            turista.setIdentificacion(request.getParameter("textid"));
+                            turista.setTipoid(request.getParameter("tipoid"));
+                            turista.setFrecuencia(Integer.valueOf(request.getParameter("textfrecuencia")));
+                            turista.setPresupuesto(Double.valueOf(request.getParameter("textpresupuesto")));
+                            if(request.getParameter("texttarjeta")!= null)
+                                tarjeta = true;
+                            turista.setTarjeta(tarjeta); 
+                            turista.setCiudad(dao.Buscar(request.getParameter("Ciudades")).getIdCiudad());
+                            if(request.getParameter("fechaviaje").equals("")){
+                                 turista.setFechaviaje(LocalDate.parse("1111-11-11"));
+                            }else{
+                                 turista.setFechaviaje(LocalDate.parse(request.getParameter("fechaviaje")));
+                            } 
+                            repuesta = daot.insertar(turista);
+
+         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        //==============================================================================================================================
+
+                             historia.setId_turista(request.getParameter("textid"));
+                             historia.setNombre_turista(request.getParameter("textnombre"));
+                             historia.setNombre_ciudad(request.getParameter("Ciudades"));
+                             historia.setFecha_ingreso(LocalDate.now());
+                             repuesta =  daoh.insertar(historia);         
+                            request.setAttribute("respuesta", repuesta);
+                    }else{
+                        repuesta = "lleno";
+                        request.setAttribute("ocupacion", repuesta);
+                        
+                    }
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //==============================================================================================================================                    
                 }else if(request.getParameter("btnmodificar") != null){

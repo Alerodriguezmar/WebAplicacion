@@ -12,11 +12,11 @@ public class Turista {
     private Double presupuesto;
     private boolean tarjeta;
     private int ciudad;
-
+    private LocalDate fechaviaje;
     public Turista() {
     }
 
-    public Turista(String nombret, LocalDate fechan, String identificacion, String tipoid, int frecuencia, Double presupuesto, boolean tarjeta, int ciudad) {
+    public Turista(String nombret, LocalDate fechan, String identificacion, String tipoid, int frecuencia, Double presupuesto, boolean tarjeta, int ciudad, LocalDate fechaviaje) {
         this.nombret = nombret;
         this.fechan = fechan;
         this.identificacion = identificacion;
@@ -25,7 +25,20 @@ public class Turista {
         this.presupuesto = presupuesto;
         this.tarjeta = tarjeta;
         this.ciudad = ciudad;
+        this.fechaviaje = fechaviaje;
     }
+
+
+
+    public LocalDate getFechaviaje() {
+        return fechaviaje;
+    }
+
+    public void setFechaviaje(LocalDate fechaviaje) {
+        this.fechaviaje = fechaviaje;
+    }
+    
+    
 
     public String getNombret() {
         return nombret;

@@ -32,7 +32,7 @@ public class TuristaDAO {
         Connection con;
         PreparedStatement pst;
 
-        String sql = "INSERT INTO  turista ( nombret , fechan , identificacion , tipoid,frecuencia,presupuesto,tarjeta,destino )VALUES(?,?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO  turista ( nombret , fechan , identificacion , tipoid,frecuencia,presupuesto,tarjeta,destino,fechaviaje )VALUES(?,?,?,?,?,?,?,?,?)";
         String respuesta = "";
         try {
             Class.forName(db.getDriver());
@@ -47,6 +47,7 @@ public class TuristaDAO {
             pst.setDouble(6, turista.getPresupuesto());
             pst.setBoolean(7, turista.isTarjeta());
             pst.setInt(8, turista.getCiudad());
+            pst.setDate(9, Date.valueOf(turista.getFechaviaje()));
             int fila = pst.executeUpdate();
             System.out.println("consulta");
             respuesta = "se registraron" + fila + "nuevo elemento";
@@ -81,8 +82,10 @@ public class TuristaDAO {
                 Double presupuesto = rs.getDouble("presupuesto");
                 boolean tarjeta = rs.getBoolean("tarjeta");
                 int destino = rs.getInt("destino");
+                LocalDate fechaviaje = rs.getDate("fechaviaje").toLocalDate();
+                
 
-                Turista turista = new Turista(nombret, fecha, identificacion, tipoid, frecuencia, presupuesto, tarjeta, destino);
+                Turista turista = new Turista(nombret, fecha, identificacion, tipoid, frecuencia, presupuesto, tarjeta, destino,fechaviaje);
                 lista.add(turista);
 
             }
@@ -143,5 +146,30 @@ public class TuristaDAO {
         }
         return respuesta;
     }
+    
+    public int CantidadVisitas(String fecha , int ciudad) throws ClassNotFoundException {
+        Connection con;
+        PreparedStatement pst;
+        ResultSet rs; 
+        int resultado = 0;
+        String sql ="select  count(fechaviaje) as cantidad from turista Where destino = '" + ciudad + "' and fechaviaje = '" +fecha + "' group by fechaviaje ";
+      try {
+            Class.forName(db.getDriver());
+            con = DriverManager.getConnection(db.getUrl(), db.getUsuario(), db.getContrasena());
+            pst = con.prepareStatement(sql);
+            rs = pst.executeQuery();
+            while (rs.next()) {
+                
+                 resultado = rs.getInt("cantidad");  
+             
+            }
+            con.close();
+        } catch (SQLException e) {
+            System.out.println(e.toString());
+            return resultado;
+        }
+        return resultado;
+    }
 
 }
+ 

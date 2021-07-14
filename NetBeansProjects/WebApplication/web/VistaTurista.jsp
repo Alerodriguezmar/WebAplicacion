@@ -1,4 +1,5 @@
 
+<%@page import="java.time.LocalDate"%>
 <%@page import="Modelo.Historial"%>
 <%@page import="DAO.HistorialDAO"%>
 <%@page import="DAO.CiudadDAO"%>
@@ -21,6 +22,13 @@
         CiudadDAO ciudaddao = new CiudadDAO();
         List<Ciudad> datosciudad = new ArrayList();
     %>
+    <%if(request.getAttribute("ocupacion") == "lleno"){%> 
+    <script>
+        window.alert("Ciudad con Ocupacion Maxima");
+    </script>  
+     <%  }%>     
+    
+    
     <body>
          <header>
             <h1>Turistas</h1>
@@ -29,7 +37,7 @@
         <form name="Turista" method="post" action="SERVturista" id="form" >
              <p>IDENTIFICACION:</p><input type="text" name="textid">
              <p>NOMBRE:</p><input type="text" name="textnombre"> 
-             <p>FECHA NACIMIENTO:</p><input type="datetime" name="textfecha"> 
+             <p>FECHA NACIMIENTO:</p><input type="date" name="textfecha"> 
              <p>TIPO ID:</p><select name="tipoid">
                 <option value="Cedula">Cedula Ciudadania</option>
                 <option value="Tarjeta">Tarjeta de Identidad</option>
@@ -48,21 +56,27 @@
 
                 <option value="<%= dato.getNombre_ciudad().toString()%>"> <%= dato.getNombre_ciudad().toString()%> </option>
                 <% }%>
-            </select></p>          
+            </select></p>
+             <p> ---------------------Opcional---------------------</p>
+             <p>FECHA DE VIAJE:</p><input type="date" name="fechaviaje" value=""><br/>
+             
              <p> <input type="submit" name="btninsertar" value="Insertar">
             <input type="submit" name="btnmodificar" value="Modificar">
             <input type="submit" name="btneliminar" value="Eliminar"> 
             </p>
         </form>
+            
+            
         <h1><center> Registros </center> </h1>
         <table class="tabla" id="main-container">
             <thead>
             <tr>
-                <td>Identificacion</td> <td>Nombre</td> <td>Fecha de nacimeinto</td> <td>Tipo ID</td> <td>Frecuencia Viajes</td><td>Presupuesto Viajes</td><td>Destino</td><td>Tarjeta de credito</td>
+                <td>Identificacion</td> <td>Nombre</td> <td>Fecha de nacimeinto</td> <td>Tipo ID</td> <td>Frecuencia Viajes</td><td>Presupuesto Viajes</td><td>Destino</td><td>Tarjeta de credito</td><td>Fecha Viaje</td>
             </tr>
             </thead>
             <%
                 //generar recorrido sobre la consulta y motrar datos
+                LocalDate fechanull = LocalDate.parse("1111-11-11");
                 datos = dao.listarTuristas();
                 for (Turista dato : datos) {
             %>
@@ -75,6 +89,11 @@
                 <td> <%= dato.getPresupuesto()%> </td>
                 <td><%= ciudaddao.Buscarid(dato.getCiudad()).getNombre_ciudad()%></td>
                 <td> <%= dato.isTarjeta()%> </td>
+                <% if(dato.getFechaviaje().equals(fechanull)){%>
+                     <td> No especificado </td>
+                <% }else{ %>
+                     <td> <%= dato.getFechaviaje() %> </td>
+                       <% } %>
             </tr> 
             <% } %>
 
