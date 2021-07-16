@@ -18,7 +18,8 @@ import java.util.List;
 public class HistorialDAO {
     
 DataBase db = new DataBase();
-
+        
+        //Inserta un nuevo registro en latabla historial
       public String insertar(Object object){
           
           Historial historial =  (Historial) object;
@@ -44,6 +45,7 @@ DataBase db = new DataBase();
          return respuesta ;
       }
       
+        //Consulta la cantidad de de personas que han registrado o viajado a una ciudad
       public List<Historial> listarCantidad() throws ClassNotFoundException {
         List<Historial> lista = new ArrayList<>();
         Connection con;
@@ -69,7 +71,8 @@ DataBase db = new DataBase();
         }
         return lista;
     }
-      
+            
+        //Consulta todos los datos registrados en la tabla historial
         public List<Historial> listarHistorial() throws ClassNotFoundException {
         List<Historial> lista = new ArrayList<>();
         Connection con;
@@ -99,7 +102,7 @@ DataBase db = new DataBase();
         return lista;
     }
       
-      
+            //Busca todos los registros de una ciudad en concreto
           public List<Historial> BuscarCiudad(String nombre) throws ClassNotFoundException {
         List<Historial> lista = new ArrayList<>();
         Connection con;
@@ -130,7 +133,7 @@ DataBase db = new DataBase();
     }
             
           
-          
+          //Busca todos los registros de una persona en concreto
           public List<Historial> BuscarTurista(String id) throws ClassNotFoundException {
         List<Historial> lista = new ArrayList<>();
         Connection con;

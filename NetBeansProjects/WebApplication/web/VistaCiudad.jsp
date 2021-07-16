@@ -67,7 +67,7 @@
                               <td> <%= dato.getCant_habitantes() %> </td>
                               <td> <%= dato.getSitio_turistico() %> </td>
                               <td> <%= dato.getHotel_reservado() %> </td>
-                              <-<!-- Llama la funcion cargar y envia los datos de cada row en la tabla -->
+                              <!-- Llama la funcion cargar y envia los datos de cada row en la tabla -->
                               <td> <a class="boton_personalizado" href="javascript:cargar('<%= dato.getIdCiudad()%>','<%= dato.getNombre_ciudad()%>','<%= dato.getCant_habitantes() %>','<%= dato.getSitio_turistico() %>','<%= dato.getHotel_reservado() %>')" >Cargar</a></td>
                           </tr> 
                         <%

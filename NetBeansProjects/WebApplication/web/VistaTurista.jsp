@@ -32,7 +32,7 @@
                     }            
         </script>
         
-        
+          <%--  Inicializacion --%>
     <%
         TuristaDAO dao = new TuristaDAO();
         List<Turista> datos = new ArrayList();
@@ -40,6 +40,7 @@
         List<Ciudad> datosciudad = new ArrayList();
     %>
     
+    <!-- Alerta emergente(Cantidad de tyuristas es mayor que 5 en una fecha)  -->
     <%if(request.getAttribute("ocupacion") == "lleno"){%> 
     <script>
         window.alert("Ciudad con Ocupacion Maxima");
@@ -64,7 +65,7 @@
             </select>
              <p>FRECUENCIA VIAJE:<input type="number" name="textfrecuencia"></p>
              <p>PRESUPUESTO VIAJE:<input type="number" name="textpresupuesto"></p>
-             <p>USA TARJETA:<input type="checkbox" name="texttarjeta"></p>
+             <p>USA TARJETA:<input type="checkbox" name="texttarjeta"></p>         
              <p>CIUDAD:<select name="Ciudades">
                 <%
                     //generar recorrido sobre la consulta y motrar datos
@@ -112,6 +113,7 @@
                 <% }else{ %>
                      <td> <%= dato.getFechaviaje() %> </td>
                 <% } %>
+                 <!-- Llama la funcion cargar y envia los datos de cada row en la tabla -->
                 <td><a  class="boton_personalizado" href="javascript:cargar('<%= dato.getIdentificacion()%>',' <%= dato.getNombret()%>','<%= dato.getFechan()%>','<%= dato.getTipoid()%>
                        ','<%= dato.getFrecuencia()%>','<%= dato.getPresupuesto()%>','<%= dato.isTarjeta()%>','<%= ciudaddao.Buscarid(dato.getCiudad()).getNombre_ciudad()%>','<%= dato.getFechaviaje() %>')">cargar </a>  </td>
             </tr> 
@@ -157,7 +159,10 @@
             </thead>
             <tbody style="overflow-y: scroll; height: 50px;" >
             <tr>
+                
+                
             <%
+                //Busca en la tabla o borra las busquedas hechas en dicha tabla
                 List<Historial> datos3 = new ArrayList();
                 if(request.getAttribute("busqueda") != null){
                      datos3 = (List<Historial>) request.getAttribute("busqueda");

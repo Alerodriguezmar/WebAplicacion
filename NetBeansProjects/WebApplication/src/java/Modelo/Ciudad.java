@@ -36,9 +36,6 @@ public class Ciudad {
         this.nombre_ciudad = nombre_ciudad;
     }
 
-
-
-
     public int getCant_habitantes() {
         return cant_habitantes;
     }

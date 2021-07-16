@@ -15,6 +15,7 @@ public class CiudadDAO {
       DataBase db = new DataBase();
       
       
+      //elimina una ciudad ya registrada
       public String Eliminar(Object object){
              Ciudad ciudad = (Ciudad) object;
           Connection con;
@@ -35,6 +36,7 @@ public class CiudadDAO {
          return respuesta;
       }
       
+      //inserta una nueva ciudad en la DB
       public String insertar(Object object){
           Ciudad ciudad = (Ciudad) object;
           Connection con;
@@ -61,6 +63,7 @@ public class CiudadDAO {
       }
       
       
+            //Actualiza un registro ya hecho
             public String Actulizar(Object object){
           Ciudad ciudad = (Ciudad) object;
           Connection con;
@@ -87,6 +90,7 @@ public class CiudadDAO {
          return respuesta;
       }
       
+            //Consulta todas las ciudades registradas
       public List<Ciudad> listarciudades() throws ClassNotFoundException{
         List<Ciudad> lista = new ArrayList<>();
         Connection con;
@@ -117,7 +121,7 @@ public class CiudadDAO {
          return lista;
     }
     
-      
+      //Busca ciudad ´por su nombre;
   public Ciudad Buscar(String nombre) {
         Ciudad ciudad = new Ciudad();
         Connection con;
@@ -150,6 +154,7 @@ public class CiudadDAO {
          return ciudad;
     }
   
+    //Busca ciudad ´por su id;
     public Ciudad Buscarid(int id) {
         Ciudad ciudad = new Ciudad();
         Connection con;

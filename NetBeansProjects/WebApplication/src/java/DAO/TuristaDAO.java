@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package DAO;
 
 import Config.DataBase;
@@ -19,14 +15,11 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- * @author PC
- */
+
 public class TuristaDAO {
 
     DataBase db = new DataBase();
-
+    //Insertar un nuevo registro en la tabla turista
     public String insertar(Object object) {
         Turista turista = (Turista) object;
         Connection con;
@@ -57,7 +50,7 @@ public class TuristaDAO {
         }
         return respuesta + "consulta";
     }
-
+    //Consulta todos los registros de la tabla turista
     public List<Turista> listarTuristas() throws ClassNotFoundException {
         List<Turista> lista = new ArrayList<>();
         Connection con;
@@ -96,7 +89,7 @@ public class TuristaDAO {
         }
         return lista;
     }
-
+    // elimina un registro en la tabla turista
     public String Eliminar(Turista object) {
         Turista turista = (Turista) object;
         Connection con;
@@ -116,7 +109,7 @@ public class TuristaDAO {
         }
         return respuesta;
     }
-
+    //Actualiza o modifica un registro en la tabla turista
     public String Actualizar(Object object) {
         Turista turista = (Turista) object;
         Connection con;
@@ -146,7 +139,7 @@ public class TuristaDAO {
         }
         return respuesta;
     }
-    
+    //Consulta la cantidad de Visitantes en una ciudad en una fecha
     public int CantidadVisitas(String fecha , int ciudad) throws ClassNotFoundException {
         Connection con;
         PreparedStatement pst;
