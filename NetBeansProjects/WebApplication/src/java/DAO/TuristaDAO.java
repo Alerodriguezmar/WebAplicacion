@@ -94,7 +94,7 @@ public class TuristaDAO {
         Turista turista = (Turista) object;
         Connection con;
         PreparedStatement pst;
-        String sql = "DELETE FROM turista WHERE identificacion = ? ";
+        String sql = "DELETE FROM turista WHERE identificacion = ? LIMIT 1";
         String respuesta = "";
         try {
             Class.forName(db.getDriver());

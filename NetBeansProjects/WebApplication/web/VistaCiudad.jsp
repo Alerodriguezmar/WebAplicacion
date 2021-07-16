@@ -77,6 +77,6 @@
          </table>  <br>      
         
     </body>
-    <-<!-- envia nuevamente al Index/pagina principal -->
+    <!-- envia nuevamente al Index/pagina principal -->
     <a class="boton_personalizado" id="boton2" href="/WebApplication">Inicio</a>
 </html>
